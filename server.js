@@ -13,8 +13,8 @@ app.use(express.urlencoded({ extended: true }));
 // Serve file statici dalla directory 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
-// Serve file statici dalla directory 'images'
-app.use(express.static(path.join(__dirname, 'images')));
+// Serve file statici dalla directory 'images' sotto il percorso '/images'
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 // Endpoint API per ottenere tutti i prodotti
 app.get('/api/products', (req, res) => {
