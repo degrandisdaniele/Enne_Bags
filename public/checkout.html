@@ -63,24 +63,48 @@
                     ></path>
                   </svg>
                 </div>
+                <span id="cart-item-count" class="ml-1 text-xs font-bold">0</span>
               </button>
             </div>
           </div>
         </header>
         <div class="px-40 flex flex-1 justify-center py-5">
-          <div class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
+          <form id="checkout-form" class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
             <div class="flex flex-wrap gap-2 p-4">
-              <a class="text-neutral-500 text-base font-medium leading-normal" href="#">Cart</a>
+              <a class="text-neutral-500 text-base font-medium leading-normal" href="carrello.html">Cart</a>
               <span class="text-neutral-500 text-base font-medium leading-normal">/</span>
               <span class="text-[#141414] text-base font-medium leading-normal">Checkout</span>
             </div>
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Checkout</p></div>
+
             <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Shipping Address</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Full Name</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Nome</p>
                 <input
-                  placeholder="Enter your full name"
+                  id="nome"
+                  placeholder="Mario"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Cognome</p>
+                <input
+                  id="cognome"
+                  placeholder="Rossi"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Email</p>
+                <input
+                  type="email"
+                  id="email"
+                  placeholder="mario.rossi@example.com"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                   value=""
                 />
@@ -88,9 +112,10 @@
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Address</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Indirizzo</p>
                 <input
-                  placeholder="Street address"
+                  id="indirizzo"
+                  placeholder="Via Roma, 1"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                   value=""
                 />
@@ -98,9 +123,10 @@
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">City</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Città</p>
                 <input
-                  placeholder="City"
+                  id="citta"
+                  placeholder="Roma"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                   value=""
                 />
@@ -108,38 +134,19 @@
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">State</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Provincia / Stato</p> <!-- Assuming State is more general -->
                 <input
-                  placeholder="State"
+                  id="state"
+                  placeholder="RM"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                   value=""
                 />
               </label>
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Zip Code</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">CAP</p>
                 <input
-                  placeholder="Zip Code"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Phone Number</p>
-                <input
-                  placeholder="Phone Number"
-                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
-                  value=""
-                />
-              </label>
-            </div>
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Payment Information</h3>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
-              <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Card Number</p>
-                <input
-                  placeholder="Card Number"
+                  id="cap"
+                  placeholder="00100"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                   value=""
                 />
@@ -147,81 +154,70 @@
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Expiration Date</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Numero di Telefono (Opzionale)</p>
+                <input
+                  id="phone"
+                  placeholder="123 4567890"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
+                  value=""
+                />
+              </label>
+            </div>
+
+            <!-- Payment Information - Not processed by backend, for UI completeness -->
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Payment Information (Simulazione)</h3>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Numero Carta</p>
+                <input
+                  placeholder="xxxx xxxx xxxx xxxx"
+                  class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
+                />
+              </label>
+            </div>
+            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+              <label class="flex flex-col min-w-40 flex-1">
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Scadenza</p>
                 <input
                   placeholder="MM/YY"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
-                  value=""
                 />
               </label>
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#141414] text-base font-medium leading-normal pb-2">CVV</p>
                 <input
-                  placeholder="CVV"
+                  placeholder="123"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
-                  value=""
                 />
               </label>
             </div>
-            <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
+             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Name on Card</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Nome sulla Carta</p>
                 <input
-                  placeholder="Name on Card"
+                  placeholder="Mario Rossi"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
-                  value=""
                 />
               </label>
             </div>
+
             <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Order Summary</h3>
-            <div class="flex items-center gap-4 bg-neutral-50 px-4 min-h-[72px] py-2">
-              <div
-                class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD_RkzrsU1rov0JmVRWrlTcu8vvQcsf8LeSclOYKwRwaIhPh8cksCnhT8gU98TetefTaNMXY4Aw6X-09gauFP-JbMJe0F7xEKfgsk2ZWhK9gOV1JdZH51eGiji1VF-LtmNSZH2ERa8-03ZQH1JIhqS1JTCLaXv1i3uYZBDUsQgyE6ABa1Bkps1qhhi6MVDbaCo5w7UDR2NhhGIOUYPzWfIFNhRKLS5GaOscECXBzEdvmaiBMfDZahBb4dGavY1oXXHKX3tZ7fQ2DSwl");'
-              ></div>
-              <div class="flex flex-col justify-center">
-                <p class="text-[#141414] text-base font-medium leading-normal line-clamp-1">1 x Classic Tote</p>
-                <p class="text-neutral-500 text-sm font-normal leading-normal line-clamp-2">Handcrafted Leather Tote</p>
-              </div>
+            <div id="order-summary" class="p-4">
+              <!-- Order summary will be dynamically inserted here by app.js -->
             </div>
-            <div class="flex items-center gap-4 bg-neutral-50 px-4 min-h-[72px] py-2">
-              <div
-                class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-14"
-                style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuADvvDdZ2fAYGNYkZZ83LgODjTwauwXHqfME2guj9MwJbXKHCJuZFuROa7rCC5fcrbNlciAC4eol9lVKnSXd2Rjdqri8K162YXFOEJ5n0LpEGpH-uE5wPQyDmCQ722gNhiyl6ehOaoiZeabnlmKSLSANT3gJjq3vt52lLF00glFy_IPdba9Iu6fYWv2Cqe0yYgCh2JAakywZuZ6tqmUi78qSoukyhF4fg-LdriiP4gH5tLXCvy5OPuPJe9MrqR0ipVfoF1hPwZl5RuG");'
-              ></div>
-              <div class="flex flex-col justify-center">
-                <p class="text-[#141414] text-base font-medium leading-normal line-clamp-1">1 x Minimalist Wallet</p>
-                <p class="text-neutral-500 text-sm font-normal leading-normal line-clamp-2">Handcrafted Leather Wallet</p>
-              </div>
-            </div>
-            <div class="p-4">
-              <div class="flex justify-between gap-x-6 py-2">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Subtotal</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right">$250.00</p>
-              </div>
-              <div class="flex justify-between gap-x-6 py-2">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Shipping</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right">Free</p>
-              </div>
-              <div class="flex justify-between gap-x-6 py-2">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Taxes</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right">$20.00</p>
-              </div>
-              <div class="flex justify-between gap-x-6 py-2">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Total</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right">$270.00</p>
-              </div>
-            </div>
+
             <div class="flex px-4 py-3">
               <button
+                type="submit"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#141414] text-neutral-50 text-base font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">Place Order</span>
               </button>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
+    <script src="/js/app.js" defer></script>
   </body>
 </html>

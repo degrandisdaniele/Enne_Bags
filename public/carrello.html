@@ -66,6 +66,7 @@
                     ></path>
                   </svg>
                 </div>
+                <span id="cart-item-count" class="ml-1 text-xs font-bold">0</span>
               </button>
             </div>
           </div>
@@ -78,43 +79,36 @@
               <span class="text-[#141414] text-base font-medium leading-normal">Shopping Bag</span>
             </div>
             <div class="flex flex-wrap justify-between gap-3 p-4">
-              <p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Shopping Bag (1 item)</p>
+              <p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Shopping Bag</p>
+              <!-- Item count will be updated by JS if needed, or removed if redundant with header -->
             </div>
-            <div class="flex gap-4 bg-neutral-50 px-4 py-3 justify-between">
-              <div class="flex items-start gap-4">
-                <div
-                  class="bg-center bg-no-repeat aspect-square bg-cover rounded-lg size-[70px]"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB854dt2ilLWqN-2mNcKDJvnmHy_hGF9EcnmxrPq8PWBCdyBO5u-stRgOW9wFdUpkwZaJGiX2OMkeifkyqJpyACJpYXQPMICOAz1tJRW5DbW4hjZHGYn-L4Hi727A5PgbMnxZjpgvIhzQ8RgIPHz6lR5QzB0RgdDFRxzPr3umbj3sn1ubvsuc0N3Hrzdnbpbmtlz1E2bxLHSgdRAxZilLA3pIYM1RDCpfvyN4ibys0_UZpzl9_CswChDE6bQNcmiuyqlDgLHUHYcgU3");'
-                ></div>
-                <div class="flex flex-1 flex-col justify-center">
-                  <p class="text-[#141414] text-base font-medium leading-normal">Handcrafted Leather Tote</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">Quantity: 1</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">Size: M</p>
-                </div>
-              </div>
-              <div class="shrink-0"><p class="text-[#141414] text-base font-normal leading-normal">$250</p></div>
+
+            <div id="cart-items-container" class="flex flex-col gap-4 bg-neutral-50 px-4 py-3">
+              <!-- Cart items will be dynamically inserted here by app.js -->
             </div>
+
             <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Order Summary</h2>
-            <div class="p-4 grid grid-cols-[20%_1fr] gap-x-6">
+            <div class="p-4 grid grid-cols-[auto_1fr] gap-x-6"> <!-- Changed grid-cols for more flexibility -->
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
                 <p class="text-neutral-500 text-sm font-normal leading-normal">Subtotal</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal">$250.00</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right" id="cart-subtotal">$0.00</p> <!-- Added ID and default for subtotal -->
               </div>
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
                 <p class="text-neutral-500 text-sm font-normal leading-normal">Shipping</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal">Free</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right">Free</p> <!-- Assuming shipping is always free for now -->
               </div>
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
                 <p class="text-neutral-500 text-sm font-normal leading-normal">Estimated Tax</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal">$20.00</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right">$0.00</p> <!-- Assuming tax calculation is not part of this phase -->
               </div>
-              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
+              <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5 font-bold">
                 <p class="text-neutral-500 text-sm font-normal leading-normal">Total</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal">$270.00</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right" id="cart-total">$0.00</p>
               </div>
             </div>
             <div class="flex px-4 py-3 justify-end">
               <button
+                onclick="window.location.href='checkout.html'"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#141414] text-neutral-50 text-base font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">Checkout</span>
@@ -124,5 +118,6 @@
         </div>
       </div>
     </div>
+    <script src="/js/app.js" defer></script>
   </body>
 </html>

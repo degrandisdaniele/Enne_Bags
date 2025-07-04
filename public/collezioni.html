@@ -74,6 +74,18 @@
                 </svg>
               </div>
             </button>
+            <button
+              class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#ededed] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
+            >
+              <div class="text-[#141414]" data-icon="ShoppingBag" data-size="20px" data-weight="regular">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256">
+                  <path
+                    d="M216,40H40A16,16,0,0,0,24,56V200a16,16,0,0,0,16,16H216a16,16,0,0,0,16-16V56A16,16,0,0,0,216,40Zm0,160H40V56H216V200ZM176,88a48,48,0,0,1-96,0,8,8,0,0,1,16,0,32,32,0,0,0,64,0,8,8,0,0,1,16,0Z"
+                  ></path>
+                </svg>
+              </div>
+              <span id="cart-item-count" class="ml-1 text-xs font-bold">0</span>
+            </button>
             <div
               class="bg-center bg-no-repeat aspect-square bg-cover rounded-full size-10"
               style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuD30XUmz2aF7_Va_YYvutAdoRMEh-jnl1FAjjmvi_ifwtuTl4BCG7wbDzkFx8xJLVaXjZ5fUyonv7XPOQ3laoT2z_3qxCBaLteQXX46HkO2zcDfusOMrM6EwdMLVQLSukRLOLf6YHxKgxNBHGwXPAnD4-tmjRxPiGSdw5GtLUQG0Jnj6j09aoakxe9ngUmK10LyIPbtGmR95bCH_9E2fq6Pr6rmyi8AaDaSykqJYbzBCcPZdqC2YoSQkkqRMFiBfLrDQJOhjojqhjnn");'
@@ -165,71 +177,14 @@
           </div>
           <div class="layout-content-container flex flex-col max-w-[960px] flex-1">
             <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Collections</p></div>
-            <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuB0dpKfsTildo1z2dynbOWIWzXSX1wpI_8vPMAQQzu3qv7TMei9T99fSp2Xy_B5_0LgaZrdNh5OUshsuii8Mn-dU-T4KRh4XMbA4D-qZVvr6ETo2w75VkpF8NGJOnlWElU2_WEZtilBdSCO7IgeEZDuVtA1e5crKoqVqYJ-rHLgmUNB4zlLcSPHpoyfKfEKN1wVrQxu78q73J3LRUfaotWjh75qLtnIqnhyStxoWXG_P276lDmUtgEg9B9A7MFm64ys3nhMR2yERPmn");'
-                ></div>
-                <div>
-                  <p class="text-[#141414] text-base font-medium leading-normal">The Classic Shoulder Bag</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">$250</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuDNI_peNw4E53iJ4cZtqCdZDvjuWmLsMR2wbu0Gea8IokrT6rmGSc4KTNtQM_FywW8p3E8tzAje3IzNmAAfTcZJqfdCF12z7M_3WsrUXus5qHQMhE15WDx4EUbz9Y5B74kpNfxtlBu-eUWDonp9M0ttKCml5y5FRkbCjD6774daA3qIispqmAOorkkka2nwvwxPMomeT1nM9RRMFU1ubFjLkioaCIR5n2w68X6fkoPoUz8D-HclyOZRsPW765EYrQoMZiFiPNbnZHF8");'
-                ></div>
-                <div>
-                  <p class="text-[#141414] text-base font-medium leading-normal">The Everyday Handbag</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">$300</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuCNzJXEVTbYQjs1vEMJ5uISj7W9diXEodF-NqHumk1DrbnLupEvF3jlp0CHd6B7DPjRtZH61yGgymoJYU5Zx8i3pVEB9vOSp4AswYh4npiH_OZASAkerBtToWj6jGOhBf4DmZHl0OL6QukyTFNoLgvDZ4ZEs9FBBPHKxY-yo3CoDV5rB0yl4-EBKJtwHeOTNzEIom_N_uvPfIudkpIpfbOV9L4AI2gwAhe2rFqps20LDwf3nBg63dOkNNs_-nwkVPbSY6Z5yGDhuU_c");'
-                ></div>
-                <div>
-                  <p class="text-[#141414] text-base font-medium leading-normal">The Evening Clutch</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">$180</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAgEDBUfAfYyzrjiq2qP4KO95XASX1E59jdvJbtr_HNnffVaQuJgFqwcLcmj7cMC640xby31xskWs1LE30l0kIqHpOFwj1MzlJ1Bj1h3_wjUJFUvdaZiHLLl0Dq93vG8ojXqXFCXtuZpDPClCBe8Wi_qB4oLMDlcv6bYl2qwkaz8znw4aBd1tcTGY9ly7gfxefOWhs3aGbvB9d819UnFRCoA3Cuh36wWKIOyedG43c8KH3rxf7B9xmxNZ0Pefsvkc6o-ZOn2W9HMUGH");'
-                ></div>
-                <div>
-                  <p class="text-[#141414] text-base font-medium leading-normal">The Mini Shoulder Bag</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">$220</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuC04nNM0AAc9RbR33o6d0OL4mSPxzxHKw_ET-Tzcrd9mGVpNgftWK1JmAYTtPaWmedOEfgW74O-9kfXM9yPhkLBovtRCas0HClvzZO3qvKmhHAqXNLZ_5Uv-QZqUi8rddCL__A2fu78qCnE9rxiZHDnCv-iGhLyu23_lEbX1xC1d-JjymY9LxQ4MZKc5mXUofemaohowLBDvJ7WDVU3phm5x0k1vTtqwvNFVNpi0VtJsTO6zD1SdPU_zrlATq9tpUeUy0gpztEPGhoS");'
-                ></div>
-                <div>
-                  <p class="text-[#141414] text-base font-medium leading-normal">The Structured Handbag</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">$350</p>
-                </div>
-              </div>
-              <div class="flex flex-col gap-3 pb-3">
-                <div
-                  class="w-full bg-center bg-no-repeat aspect-[3/4] bg-cover rounded-lg"
-                  style='background-image: url("https://lh3.googleusercontent.com/aida-public/AB6AXuAwdENO194sdoZ7_nHKQny7pqA5vRYt81A3t007IDyxK-TEvNcMJlc7rL_GrNHKSvmTgdt79FQJFpFUq5M-1DlD_P9JqBNWbcd7w9We96ckb7VdzL_I44oD93a82qN6qUxlysxPMoTo5HsRuM0iyHGlSwAEavXq8ZnJxv3k4uIk_PaLERvHex2iZL8hqEe_b6GcYrdoaxtuZoWKlsjN-L2QhqmEPEvJ8bbmC_7pvFfMmQU0BhWtnUVu30DO0leog9R43_ZTp4Jrg8hl");'
-                ></div>
-                <div>
-                  <p class="text-[#141414] text-base font-medium leading-normal">The Embellished Clutch</p>
-                  <p class="text-neutral-500 text-sm font-normal leading-normal">$200</p>
-                </div>
-              </div>
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Collections</p></div>
+            <div id="product-grid" class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
+              <!-- Product cards will be dynamically inserted here by app.js -->
             </div>
           </div>
         </div>
       </div>
     </div>
+    <script src="/js/app.js" defer></script>
   </body>
 </html>

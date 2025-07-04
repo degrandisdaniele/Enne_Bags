@@ -1,0 +1,46 @@
+[
+  {
+    "id": 1,
+    "nome": "Borsa 'Eleonora' in Pelle",
+    "prezzo": 250,
+    "descrizione": "Una borsa elegante e spaziosa, realizzata a mano con la migliore pelle italiana.",
+    "immagine_principale": "/images/eleonora-principale.jpg",
+    "immagini_galleria": ["/images/eleonora-dettaglio1.jpg", "/images/eleonora-dettaglio2.jpg"],
+    "colori_disponibili": ["Nero", "Marrone", "Rosso"],
+    "tipo": "Tote",
+    "materiale": "Pelle"
+  },
+  {
+    "id": 2,
+    "nome": "Zaino 'Marco' Casual",
+    "prezzo": 180,
+    "descrizione": "Zaino versatile e moderno, perfetto per l'uso quotidiano e i viaggi brevi.",
+    "immagine_principale": "/images/marco-principale.jpg",
+    "immagini_galleria": ["/images/marco-dettaglio1.jpg", "/images/marco-dettaglio2.jpg"],
+    "colori_disponibili": ["Blu Navy", "Grigio", "Nero"],
+    "tipo": "Zaino",
+    "materiale": "Tessuto Tecnico"
+  },
+  {
+    "id": 3,
+    "nome": "Pochette 'Sofia' da Sera",
+    "prezzo": 120,
+    "descrizione": "Elegante pochette per le occasioni speciali, con dettagli raffinati.",
+    "immagine_principale": "/images/sofia-principale.jpg",
+    "immagini_galleria": ["/images/sofia-dettaglio1.jpg"],
+    "colori_disponibili": ["Argento", "Oro", "Nero"],
+    "tipo": "Pochette",
+    "materiale": "Seta"
+  },
+  {
+    "id": 4,
+    "nome": "Borsa a Tracolla 'Giulia'",
+    "prezzo": 220,
+    "descrizione": "Comoda e stilosa borsa a tracolla, ideale per chi cerca praticità ed eleganza.",
+    "immagine_principale": "/images/giulia-principale.jpg",
+    "immagini_galleria": ["/images/giulia-dettaglio1.jpg", "/images/giulia-dettaglio2.jpg"],
+    "colori_disponibili": ["Beige", "Nero", "Cuoio"],
+    "tipo": "Tracolla",
+    "materiale": "Pelle"
+  }
+]
