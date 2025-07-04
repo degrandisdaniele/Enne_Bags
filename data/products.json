@@ -4,8 +4,8 @@
     "nome": "Borsa 'Eleonora' in Pelle",
     "prezzo": 250,
     "descrizione": "Una borsa elegante e spaziosa, realizzata a mano con la migliore pelle italiana.",
-    "immagine_principale": "/images/eleonora-principale.jpg",
-    "immagini_galleria": ["/images/eleonora-dettaglio1.jpg", "/images/eleonora-dettaglio2.jpg"],
+    "immagine_principale": "/images/Borsa_1.png",
+    "immagini_galleria": ["/images/Borsa_1.png", "/images/Borsa_1.png"],
     "colori_disponibili": ["Nero", "Marrone", "Rosso"],
     "tipo": "Tote",
     "materiale": "Pelle"
@@ -35,6 +35,17 @@
   {
     "id": 4,
     "nome": "Borsa a Tracolla 'Giulia'",
+    "prezzo": 220,
+    "descrizione": "Comoda e stilosa borsa a tracolla, ideale per chi cerca praticità ed eleganza.",
+    "immagine_principale": "/images/giulia-principale.jpg",
+    "immagini_galleria": ["/images/giulia-dettaglio1.jpg", "/images/giulia-dettaglio2.jpg"],
+    "colori_disponibili": ["Beige", "Nero", "Cuoio"],
+    "tipo": "Tracolla",
+    "materiale": "Pelle"
+  },
+  {
+    "id": 4,
+    "nome": "Borsa a Tracolla 'Giulia1'",
     "prezzo": 220,
     "descrizione": "Comoda e stilosa borsa a tracolla, ideale per chi cerca praticità ed eleganza.",
     "immagine_principale": "/images/giulia-principale.jpg",
