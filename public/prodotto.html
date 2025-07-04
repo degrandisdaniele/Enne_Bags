@@ -20,7 +20,7 @@
     >
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#ededed] px-10 py-3">
-          <div class="flex items-center gap-4 text-[#141414]">
+          <a href="/index.html" class="flex items-center gap-4 text-[#141414]">
             <div class="size-4">
               <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path
@@ -32,13 +32,13 @@
               </svg>
             </div>
             <h2 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em]">Artisan Bags</h2>
-          </div>
+          </a>
           <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">New</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Bags</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Accessories</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Sale</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">New</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Bags</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Accessories</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Sale</a>
             </div>
             <div class="flex gap-2">
               <button
@@ -52,7 +52,7 @@
                   </svg>
                 </div>
               </button>
-              <button
+              <a href="/carrello.html"
                 class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#ededed] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
               >
                 <div class="text-[#141414]" data-icon="User" data-size="20px" data-weight="regular">
@@ -79,11 +79,41 @@
           </div>
         </header>
         <div class="gap-1 px-6 flex flex-1 justify-center py-5">
-          <div id="product-details-container" class="layout-content-container flex flex-col md:flex-row max-w-[920px] flex-1">
-            <!-- Product details will be dynamically inserted here by app.js -->
-            <!-- The existing layout divides into a main content and a sidebar. We'll let app.js populate this combined container.
-                 If a two-column layout is strictly needed, app.js would need to create those columns internally.
-                 For now, this top-level container will hold all product details. -->
+          <div class="layout-content-container flex flex-col w-full max-w-[1200px] flex-1"> <!-- Adjusted max-width for potentially wider layout -->
+            <div class="flex flex-wrap gap-2 p-4"> <!-- Breadcrumbs -->
+              <a class="text-neutral-500 text-base font-medium leading-normal" href="/collezioni.html">Bags</a>
+              <span class="text-neutral-500 text-base font-medium leading-normal">/</span>
+              <span id="breadcrumb-product-name" class="text-[#141414] text-base font-medium leading-normal">Product Name</span> <!-- JS will update this -->
+            </div>
+            <div id="product-details-container" class="flex flex-col md:flex-row flex-1">
+              <!-- Product details will be dynamically inserted here by app.js
+                   It should create a two-column layout if desired, e.g., one for images, one for info.
+                   Example structure app.js might create:
+                   <div class="md:w-1/2 p-4">IMAGES HERE</div>
+                   <div class="md:w-1/2 p-4">INFO, OPTIONS, ADD TO CART HERE</div>
+              -->
+            </div>
+            <!-- Static customer reviews section, if it's meant to be outside product-details-container -->
+            <!-- If reviews are dynamic per product, they should be part of #product-details-container population -->
+            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Customer Reviews</h2>
+            <div class="flex flex-wrap gap-x-8 gap-y-6 p-4">
+              <div class="flex flex-col gap-2">
+                <p class="text-[#141414] text-4xl font-black leading-tight tracking-[-0.033em]">4.8</p>
+                <div class="flex gap-0.5">
+                  <div class="text-[#141414]" data-icon="Star" data-size="18px" data-weight="fill">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="18px" height="18px" fill="currentColor" viewBox="0 0 256 256">
+                      <path d="M234.5,114.38l-45.1,39.36,13.51,58.6a16,16,0,0,1-23.84,17.34l-51.11-31-51,31a16,16,0,0,1-23.84-17.34L66.61,153.8,21.5,114.38a16,16,0,0,1,9.11-28.06l59.46-5.15,23.21-55.36a15.95,15.95,0,0,1,29.44,0h0L166,81.17l59.44,5.15a16,16,0,0,1,9.11,28.06Z"></path>
+                    </svg>
+                  </div>
+                  <!-- More stars -->
+                </div>
+                <p class="text-[#141414] text-base font-normal leading-normal">125 reviews</p>
+              </div>
+              <!-- Review score bars -->
+            </div>
+            <div class="flex flex-col gap-8 overflow-x-hidden bg-neutral-50 p-4">
+              <!-- Individual reviews -->
+            </div>
           </div>
         </div>
       </div>

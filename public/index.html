@@ -18,24 +18,26 @@
       <div class="layout-container flex h-full grow flex-col">
         <header class="flex items-center justify-between whitespace-nowrap border-b border-solid border-b-[#ededed] px-10 py-3">
           <div class="flex items-center gap-4 text-[#141414]">
-            <div class="size-4">
-              <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"
-                  fill="currentColor"
-                ></path>
-              </svg>
-            </div>
-            <h2 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em]">ENne</h2>
+            <a href="/" class="flex items-center gap-4 text-[#141414]">
+              <div class="size-4">
+                <svg viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path
+                    d="M4 42.4379C4 42.4379 14.0962 36.0744 24 41.1692C35.0664 46.8624 44 42.2078 44 42.2078L44 7.01134C44 7.01134 35.068 11.6577 24.0031 5.96913C14.0971 0.876274 4 7.27094 4 7.27094L4 42.4379Z"
+                    fill="currentColor"
+                  ></path>
+                </svg>
+              </div>
+              <h2 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em]">ENne</h2>
+            </a>
           </div>
           <div class="flex flex-1 justify-end gap-8">
             <div class="flex items-center gap-9">
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Home</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Collections</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/">Home</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Collections</a>
               <a class="text-[#141414] text-sm font-medium leading-normal" href="#">About Us</a>
               <a class="text-[#141414] text-sm font-medium leading-normal" href="#">Contact</a>
             </div>
-            <button
+            <a href="/carrello.html"
               class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#ededed] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
             >
               <div class="text-[#141414]" data-icon="ShoppingBag" data-size="20px" data-weight="regular">
@@ -46,7 +48,7 @@
                 </svg>
               </div>
               <span id="cart-item-count" class="ml-1 text-xs font-bold">0</span>
-            </button>
+            </a>
           </div>
         </header>
         <div class="px-40 flex flex-1 justify-center py-5">
@@ -62,11 +64,11 @@
               </div>
             </div>
             <div class="flex px-4 py-3 justify-center">
-              <button
+              <a href="/collezioni.html"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 px-4 bg-[#141414] text-neutral-50 text-sm font-bold leading-normal tracking-[0.015em]"
               >
                 <span class="truncate">Explore Collections</span>
-              </button>
+              </a>
             </div>
             <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Featured</h2>
             <div class="grid grid-cols-[repeat(auto-fit,minmax(158px,1fr))] gap-3 p-4">
