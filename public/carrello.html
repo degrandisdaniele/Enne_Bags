@@ -76,10 +76,10 @@
             <div class="flex flex-wrap gap-2 p-4">
               <a class="text-neutral-500 text-base font-medium leading-normal" href="/index.html">Home</a>
               <span class="text-neutral-500 text-base font-medium leading-normal">/</span>
-              <span class="text-[#141414] text-base font-medium leading-normal">Shopping Bag</span>
+              <span class="text-[#141414] text-base font-medium leading-normal">Carrello</span>
             </div>
             <div class="flex flex-wrap justify-between gap-3 p-4">
-              <p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Shopping Bag</p>
+              <p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Carrello</p>
               <!-- Item count will be updated by JS if needed, or removed if redundant with header -->
             </div>
 
@@ -87,23 +87,23 @@
               <!-- Cart items will be dynamically inserted here by app.js -->
             </div>
 
-            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Order Summary</h2>
+            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Riepilogo Ordine</h2>
             <div class="p-4 grid grid-cols-[auto_1fr] gap-x-6"> <!-- Changed grid-cols for more flexibility -->
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Subtotal</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right" id="cart-subtotal">$0.00</p> <!-- Added ID and default for subtotal -->
+                <p class="text-neutral-500 text-sm font-normal leading-normal">Subtotale</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right" id="cart-subtotal">€0.00</p> <!-- Added ID and default for subtotal -->
               </div>
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Shipping</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right">Free</p> <!-- Assuming shipping is always free for now -->
+                <p class="text-neutral-500 text-sm font-normal leading-normal">Spedizione</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right">Gratuita</p> <!-- Assuming shipping is always free for now -->
               </div>
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Estimated Tax</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right">$0.00</p> <!-- Assuming tax calculation is not part of this phase -->
+                <p class="text-neutral-500 text-sm font-normal leading-normal">Tasse Stimate</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right">€0.00</p> <!-- Assuming tax calculation is not part of this phase -->
               </div>
               <div class="col-span-2 grid grid-cols-subgrid border-t border-t-[#dbdbdb] py-5 font-bold">
-                <p class="text-neutral-500 text-sm font-normal leading-normal">Total</p>
-                <p class="text-[#141414] text-sm font-normal leading-normal text-right" id="cart-total">$0.00</p>
+                <p class="text-neutral-500 text-sm font-normal leading-normal">Totale</p>
+                <p class="text-[#141414] text-sm font-normal leading-normal text-right" id="cart-total">€0.00</p>
               </div>
             </div>
             <div class="flex px-4 py-3 justify-end">
@@ -111,7 +111,7 @@
                 onclick="window.location.href='checkout.html'"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 bg-[#141414] text-neutral-50 text-base font-bold leading-normal tracking-[0.015em]"
               >
-                <span class="truncate">Checkout</span>
+                <span class="truncate">Procedi al Pagamento</span>
               </button>
             </div>
           </div>

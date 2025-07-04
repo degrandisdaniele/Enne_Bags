@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
         saveCart(cart);
         updateCartIcon();
         console.log("Prodotto aggiunto/aggiornato nel carrello:", { productId, quantity, color });
-        alert(`${productDetails.nome} (${color || 'colore non specificato'}) aggiunto al carrello!`);
+        alert(`${productDetails.nome} (${color || 'colore non specificato'}) è stato aggiunto al carrello!`);
     };
 
     const updateCartIcon = () => {
@@ -61,33 +61,201 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
+    // --- Funzioni Utilità Wishlist ---
+    const getWishlist = () => {
+        const wishlist = localStorage.getItem('wishlistItems');
+        return wishlist ? JSON.parse(wishlist) : [];
+    };
+
+    const saveWishlist = (wishlist) => {
+        localStorage.setItem('wishlistItems', JSON.stringify(wishlist.map(id => parseInt(id, 10)))); // Salva sempre come numeri
+    };
+
+    const isProductInWishlist = (productId) => {
+        const id = parseInt(productId, 10);
+        return getWishlist().includes(id);
+    };
+
+    const addToWishlistStorage = (productId) => {
+        const id = parseInt(productId, 10);
+        let wishlist = getWishlist();
+        if (!wishlist.includes(id)) {
+            wishlist.push(id);
+            saveWishlist(wishlist);
+        }
+        updateWishlistHeaderIcon();
+    };
+
+    const removeFromWishlistStorage = (productId) => {
+        const id = parseInt(productId, 10);
+        let wishlist = getWishlist();
+        wishlist = wishlist.filter(itemId => itemId !== id);
+        saveWishlist(wishlist);
+        updateWishlistHeaderIcon();
+    };
+
+    const updateWishlistButtonState = (productId, buttonElement) => {
+        if (!buttonElement) return;
+        const inWishlist = isProductInWishlist(productId);
+        // Per ora, cambiamo solo un testo o un attributo. In futuro si potrebbe cambiare l'SVG.
+        if (inWishlist) {
+            buttonElement.classList.add('in-wishlist'); // Aggiungi una classe per styling
+            buttonElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M128,216S28,160,28,92A52,52,0,0,1,80,40a52,52,0,0,1,48,48A52,52,0,0,1,176,40a52,52,0,0,1,52,52C228,160,128,216,128,216Z"></path></svg>'; // Cuore pieno
+        } else {
+            buttonElement.classList.remove('in-wishlist');
+            buttonElement.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"></path></svg>'; // Cuore vuoto
+        }
+    };
+
+    const toggleWishlist = (productId, buttonElement) => {
+        const id = parseInt(productId, 10);
+        if (isProductInWishlist(id)) {
+            removeFromWishlistStorage(id);
+        } else {
+            addToWishlistStorage(id);
+        }
+        if (buttonElement) { // Potrebbe non esserci se chiamato solo per aggiornare il count header
+           updateWishlistButtonState(id, buttonElement);
+        }
+    };
+
+    const updateWishlistHeaderIcon = () => {
+        const wishlistCountElement = document.getElementById('wishlist-count');
+        if (wishlistCountElement) {
+            wishlistCountElement.textContent = getWishlist().length;
+        }
+    };
+
+    const addWishlistEventListeners = () => {
+        document.querySelectorAll('.wishlist-btn').forEach(button => {
+            // Rimuovi vecchi listener per evitare duplicazioni se questa funzione viene chiamata più volte
+            const newButton = button.cloneNode(true);
+            button.parentNode.replaceChild(newButton, button);
+
+            newButton.addEventListener('click', function(e) {
+                e.preventDefault(); // Previeni navigazione se il pulsante è dentro un <a>
+                e.stopPropagation();
+                const productId = this.dataset.productId;
+                toggleWishlist(productId, this);
+            });
+            // Imposta stato iniziale
+            updateWishlistButtonState(newButton.dataset.productId, newButton);
+        });
+    };
+
+
     // --- Logica specifica per le Pagine ---
+
+    let allProductsGlobal = []; // Per memorizzare tutti i prodotti per filtri e ricerca
+
+    // Funzione per renderizzare i prodotti nella griglia
+    const renderProducts = (productsToRender) => {
+        const productGrid = document.getElementById('product-grid');
+        if (!productGrid) return;
+        productGrid.innerHTML = ''; // Pulisci la griglia prima di aggiungere nuovi prodotti
+
+        if (productsToRender.length === 0) {
+            productGrid.innerHTML = '<p class="col-span-full text-center">Nessun prodotto trovato.</p>';
+            return;
+        }
+
+        productsToRender.forEach(product => {
+            const productCard = `
+                <div class="product-card border rounded-lg p-4 shadow hover:shadow-lg transition-shadow">
+                    <a href="prodotto.html?id=${product.id}" class="block">
+                        <img src="${product.immagine_principale}" alt="${product.nome}" class="w-full h-48 object-cover mb-2 rounded">
+                        <h3 class="text-lg font-semibold text-gray-800">${product.nome}</h3>
+                        <p class="text-gray-600">€${product.prezzo.toFixed(2)}</p>
+                    </a>
+                    <button class="wishlist-btn absolute top-2 right-2 p-1 bg-white bg-opacity-50 rounded-full hover:bg-opacity-75 focus:outline-none" data-product-id="${product.id}">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="20px" height="20px" fill="currentColor" viewBox="0 0 256 256"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"></path></svg>
+                    </button>
+                </div>
+            `;
+            productGrid.innerHTML += productCard;
+        });
+        addWishlistEventListeners(); // Aggiungi listener ai nuovi pulsanti cuore
+    };
 
     // Logica per la pagina Collezioni (collezioni.html)
     if (document.getElementById('product-grid')) { // Identificatore della griglia prodotti
         console.log("Pagina Collezioni rilevata.");
+
         fetch('/api/products')
             .then(response => response.json())
             .then(products => {
-                console.log("Prodotti ricevuti:", products);
-                const productGrid = document.getElementById('product-grid');
-                if (productGrid) {
-                    products.forEach(product => {
-                        const productCard = `
-                            <div class="product-card">
-                                <a href="prodotto.html?id=${product.id}">
-                                    <img src="${product.immagine_principale}" alt="${product.nome}" style="width:100%; max-width:300px; height:auto;">
-                                    <h3>${product.nome}</h3>
-                                    <p>€${product.prezzo.toFixed(2)}</p>
-                                </a>
-                                <!-- Potremmo aggiungere un pulsante "Aggiungi al carrello rapido" qui in futuro -->
-                            </div>
-                        `;
-                        productGrid.innerHTML += productCard;
-                    });
-                }
+                allProductsGlobal = products; // Salva i prodotti globalmente
+                renderProducts(allProductsGlobal); // Renderizza tutti i prodotti inizialmente
+                console.log("Prodotti ricevuti e renderizzati:", products);
             })
             .catch(error => console.error('Errore nel caricamento prodotti per la pagina collezioni:', error));
+
+        const searchInput = document.getElementById('search-input');
+        if (searchInput) {
+            searchInput.addEventListener('input', (e) => {
+                const searchTerm = e.target.value.toLowerCase().trim();
+                applyFiltersAndSearch();
+            });
+        }
+
+        // Logica Filtri
+        const filterCheckboxes = document.querySelectorAll('input[type="checkbox"][data-filter-group]');
+        filterCheckboxes.forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                applyFiltersAndSearch();
+            });
+        });
+
+        const applyFiltersAndSearch = () => {
+            // 1. Ottieni il termine di ricerca
+            const searchTerm = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+            // 2. Ottieni i filtri attivi
+            const activeFilters = {
+                tipo: [],
+                materiale: [],
+                colore: []
+            };
+            filterCheckboxes.forEach(cb => {
+                if (cb.checked) {
+                    const group = cb.dataset.filterGroup;
+                    if (activeFilters[group]) {
+                        activeFilters[group].push(cb.value);
+                    }
+                }
+            });
+
+            console.log("Termine Ricerca:", searchTerm);
+            console.log("Filtri Attivi:", activeFilters);
+
+            // 3. Filtra i prodotti
+            let productsToDisplay = allProductsGlobal;
+
+            // Applica ricerca
+            if (searchTerm) {
+                productsToDisplay = productsToDisplay.filter(product => {
+                    return product.nome.toLowerCase().includes(searchTerm) ||
+                           (product.descrizione && product.descrizione.toLowerCase().includes(searchTerm));
+                });
+            }
+
+            // Applica filtri per gruppo
+            Object.keys(activeFilters).forEach(groupKey => {
+                if (activeFilters[groupKey].length > 0) {
+                    productsToDisplay = productsToDisplay.filter(product => {
+                        // I prodotti in products.json hanno 'tipo', 'materiale', e 'colori_disponibili' (array)
+                        if (groupKey === 'colore') { // 'colori_disponibili' è un array
+                            return product.colori_disponibili && product.colori_disponibili.some(col => activeFilters[groupKey].includes(col));
+                        } else { // 'tipo' e 'materiale' sono stringhe singole
+                            return product[groupKey] && activeFilters[groupKey].includes(product[groupKey]);
+                        }
+                    });
+                }
+            });
+
+            console.log("Prodotti da visualizzare:", productsToDisplay.length);
+            renderProducts(productsToDisplay);
+        };
     }
 
     // Logica per la Pagina Prodotto (prodotto.html)
@@ -119,14 +287,36 @@ document.addEventListener('DOMContentLoaded', () => {
                                 </select>
                                 <!-- Aggiungere input quantità se necessario -->
                             </div>
-                            <button id="add-to-cart-btn" data-product-id="${product.id}">Aggiungi al Carrello</button>
+                            <div class="flex items-center gap-4 mt-4">
+                                <button id="add-to-cart-btn" data-product-id="${product.id}" class="bg-black text-white px-6 py-2 rounded hover:bg-gray-800 transition-colors">Aggiungi al Carrello</button>
+                                <button class="wishlist-btn p-2 border rounded-full hover:bg-gray-100 focus:outline-none" data-product-id="${product.id}">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px" fill="currentColor" viewBox="0 0 256 256"><path d="M178,32c-20.65,0-38.73,8.88-50,23.89C116.73,40.88,98.65,32,78,32A62.07,62.07,0,0,0,16,94c0,70,103.79,126.66,108.21,129a8,8,0,0,0,7.58,0C136.21,220.66,240,164,240,94A62.07,62.07,0,0,0,178,32ZM128,206.8C109.74,196.16,32,147.69,32,94A46.06,46.06,0,0,1,78,48c19.45,0,35.78,10.36,42.6,27a8,8,0,0,0,14.8,0c6.82-16.67,23.15-27,42.6-27a46.06,46.06,0,0,1,46,46C224,147.61,146.24,196.15,128,206.8Z"></path></svg>
+                                </button>
+                            </div>
                         `;
 
+                        // Listener per Aggiungi al Carrello
                         document.getElementById('add-to-cart-btn').addEventListener('click', function() {
                             const selectedColor = document.getElementById('color-select').value;
                             // Passiamo 'allProducts' ad addToCart in modo che possa trovare i dettagli del prodotto
                             addToCart(product.id, 1, selectedColor, allProducts);
                         });
+
+                        // Listener e stato iniziale per il pulsante Wishlist sulla pagina prodotto
+                        const productPageWishlistBtn = container.querySelector('.wishlist-btn');
+                        if (productPageWishlistBtn) {
+                            updateWishlistButtonState(product.id, productPageWishlistBtn); // Stato iniziale
+                            productPageWishlistBtn.addEventListener('click', function(e) {
+                                e.preventDefault();
+                                toggleWishlist(product.id, this);
+                            });
+                        }
+
+                        // Aggiorna il breadcrumb con il nome del prodotto
+                        const breadcrumbProductName = document.getElementById('breadcrumb-product-name');
+                        if (breadcrumbProductName) {
+                            breadcrumbProductName.textContent = product.nome;
+                        }
                     } else {
                         document.getElementById('product-details-container').innerHTML = '<p>Prodotto non trovato.</p>';
                     }
@@ -154,7 +344,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             if (cart.length === 0) {
                 cartItemsContainer.innerHTML = '<p>Il tuo carrello è vuoto.</p>';
-                if(cartTotalElement) cartTotalElement.textContent = '€0.00';
+                if(cartTotalElement) cartTotalElement.textContent = '€0.00'; // Mantenere simbolo valuta se necessario
+                const cartSubtotalElement = document.getElementById('cart-subtotal');
+                if(cartSubtotalElement) cartSubtotalElement.textContent = '€0.00';
                 updateCartIcon(); // Assicura che l'icona sia 0
                 return;
             }
@@ -200,7 +392,9 @@ document.addEventListener('DOMContentLoaded', () => {
                         cartItemsContainer.appendChild(cartItemElement);
                     });
 
-                    if(cartTotalElement) cartTotalElement.textContent = `€${total.toFixed(2)}`;
+                    const cartSubtotalElement = document.getElementById('cart-subtotal');
+                    if(cartSubtotalElement) cartSubtotalElement.textContent = `€${total.toFixed(2)}`;
+                    if(cartTotalElement) cartTotalElement.textContent = `€${total.toFixed(2)}`; // Assumendo che tasse e spedizione siano 0 per ora
                     addCartEventListeners(); // Aggiungi event listener dopo aver creato gli elementi
                     updateCartIcon();
                 })
@@ -265,10 +459,12 @@ document.addEventListener('DOMContentLoaded', () => {
             let total = 0;
 
             if (cart.length === 0) {
-                if (orderSummaryContainer) orderSummaryContainer.innerHTML = '<p>Il tuo carrello è vuoto. Impossibile procedere al checkout.</p>';
+                if (orderSummaryContainer) orderSummaryContainer.innerHTML = '<p>Il tuo carrello è vuoto. Impossibile procedere al pagamento.</p>';
                  // Potrebbe essere utile disabilitare il form se il carrello è vuoto
                 if(checkoutForm) checkoutForm.style.display = 'none';
                 return;
+            } else {
+                 if(checkoutForm) checkoutForm.style.display = ''; // Assicura che il form sia visibile se il carrello non è vuoto
             }
 
             fetch('/api/products')
@@ -322,15 +518,25 @@ document.addEventListener('DOMContentLoaded', () => {
 
             // Validazione semplice
             let isValid = true;
+            // Mappatura dei nomi dei campi per i messaggi di errore
+            const fieldNames = {
+                nome: "Nome",
+                cognome: "Cognome",
+                email: "Email",
+                indirizzo: "Indirizzo",
+                citta: "Città",
+                cap: "CAP"
+            };
+
             for (const key in formData) {
-                if (!formData[key]) {
+                if (!formData[key] && fieldNames[key]) { // Controlla solo i campi mappati
                     isValid = false;
-                    alert(`Il campo ${key} è obbligatorio.`);
+                    alert(`Il campo "${fieldNames[key]}" è obbligatorio.`);
                     break;
                 }
             }
-            // Validazione email semplice
-            if (isValid && formData.email && !formData.email.includes('@')) {
+
+            if (isValid && formData.email && !/\S+@\S+\.\S+/.test(formData.email)) { // Regex migliorata per email
                 isValid = false;
                 alert("Inserisci un indirizzo email valido.");
             }
@@ -338,7 +544,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (isValid) {
                 const cart = getCart();
                 if (cart.length === 0) {
-                    alert("Il carrello è vuoto. Aggiungi prodotti prima di procedere.");
+                    alert("Il carrello è vuoto. Aggiungi prodotti prima di procedere al pagamento.");
                     return;
                 }
 
@@ -360,15 +566,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 .then(data => {
                     console.log("Risposta dal backend:", data);
                     if (data.success) {
-                        alert(data.message || "Grazie per il tuo ordine!");
+                        alert(data.message || "Grazie per il tuo ordine!"); // Il messaggio di successo viene dal backend
                         saveCart([]); // Svuota il carrello
                         updateCartIcon();
                         // Reindirizza a una pagina di conferma o pulisci il form
                         checkoutForm.reset();
                         displayOrderSummary(); // Aggiorna il riepilogo (dovrebbe mostrare carrello vuoto)
-                        // window.location.href = '/conferma-ordine.html'; // Esempio di reindirizzamento
+                        // window.location.href = '/pagina-conferma-ordine.html'; // Esempio di reindirizzamento
                     } else {
-                        alert(`Errore durante il checkout: ${data.error || 'Si è verificato un problema.'}`);
+                        alert(`Errore durante il pagamento: ${data.error || 'Si è verificato un problema.'}`);
                     }
                 })
                 .catch((error) => {
@@ -381,4 +587,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Chiamata iniziale per aggiornare l'icona del carrello al caricamento di qualsiasi pagina
     updateCartIcon();
+    // Chiamata iniziale per aggiornare l'icona della wishlist nell'header (se presente su tutte le pagine)
+    updateWishlistHeaderIcon();
 });

@@ -71,13 +71,13 @@
         <div class="px-40 flex flex-1 justify-center py-5">
           <form id="checkout-form" class="layout-content-container flex flex-col w-[512px] max-w-[512px] py-5 max-w-[960px] flex-1">
             <div class="flex flex-wrap gap-2 p-4">
-              <a class="text-neutral-500 text-base font-medium leading-normal" href="/carrello.html">Cart</a>
+              <a class="text-neutral-500 text-base font-medium leading-normal" href="/carrello.html">Carrello</a>
               <span class="text-neutral-500 text-base font-medium leading-normal">/</span>
-              <span class="text-[#141414] text-base font-medium leading-normal">Checkout</span>
+              <span class="text-[#141414] text-base font-medium leading-normal">Pagamento</span>
             </div>
-            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Checkout</p></div>
+            <div class="flex flex-wrap justify-between gap-3 p-4"><p class="text-[#141414] tracking-light text-[32px] font-bold leading-tight min-w-72">Pagamento</p></div>
 
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Shipping Address</h3>
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Indirizzo di Spedizione</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#141414] text-base font-medium leading-normal pb-2">Nome</p>
@@ -104,7 +104,7 @@
                 <input
                   type="email"
                   id="email"
-                  placeholder="mario.rossi@example.com"
+                  placeholder="mario.rossi@esempio.com"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                   value=""
                 />
@@ -134,7 +134,7 @@
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Provincia / Stato</p> <!-- Assuming State is more general -->
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Provincia / Stato</p>
                 <input
                   id="state"
                   placeholder="RM"
@@ -164,8 +164,7 @@
               </label>
             </div>
 
-            <!-- Payment Information - Not processed by backend, for UI completeness -->
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Payment Information (Simulazione)</h3>
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Informazioni di Pagamento (Simulazione)</h3>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
                 <p class="text-[#141414] text-base font-medium leading-normal pb-2">Numero Carta</p>
@@ -177,9 +176,9 @@
             </div>
             <div class="flex max-w-[480px] flex-wrap items-end gap-4 px-4 py-3">
               <label class="flex flex-col min-w-40 flex-1">
-                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Scadenza</p>
+                <p class="text-[#141414] text-base font-medium leading-normal pb-2">Data di Scadenza</p>
                 <input
-                  placeholder="MM/YY"
+                  placeholder="MM/AA"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border border-[#dbdbdb] bg-neutral-50 focus:border-[#dbdbdb] h-14 placeholder:text-neutral-500 p-[15px] text-base font-normal leading-normal"
                 />
               </label>
@@ -201,7 +200,7 @@
               </label>
             </div>
 
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Order Summary</h3>
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Riepilogo Ordine</h3>
             <div id="order-summary" class="p-4">
               <!-- Order summary will be dynamically inserted here by app.js -->
             </div>
@@ -211,7 +210,7 @@
                 type="submit"
                 class="flex min-w-[84px] max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-12 px-5 flex-1 bg-[#141414] text-neutral-50 text-base font-bold leading-normal tracking-[0.015em]"
               >
-                <span class="truncate">Place Order</span>
+                <span class="truncate">Invia Ordine</span>
               </button>
             </div>
           </form>

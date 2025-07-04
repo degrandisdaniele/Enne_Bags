@@ -35,10 +35,10 @@
               <h2 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em]">Artisan Bags</h2>
             </a>
             <div class="flex items-center gap-9">
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">New Arrivals</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Bags</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Accessories</a>
-              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Sale</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Nuovi Arrivi</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Borse</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Accessori</a>
+              <a class="text-[#141414] text-sm font-medium leading-normal" href="/collezioni.html">Saldi</a>
             </div>
           </div>
           <div class="flex flex-1 justify-end gap-8">
@@ -57,13 +57,15 @@
                   </svg>
                 </div>
                 <input
-                  placeholder="Search"
+                  id="search-input"
+                  placeholder="Cerca"
                   class="form-input flex w-full min-w-0 flex-1 resize-none overflow-hidden rounded-lg text-[#141414] focus:outline-0 focus:ring-0 border-none bg-[#ededed] focus:border-none h-full placeholder:text-neutral-500 px-4 rounded-l-none border-l-0 pl-2 text-base font-normal leading-normal"
                   value=""
                 />
               </div>
             </label>
             <button
+              id="wishlist-button"
               class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#ededed] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
             >
               <div class="text-[#141414]" data-icon="Heart" data-size="20px" data-weight="regular">
@@ -73,6 +75,7 @@
                   ></path>
                 </svg>
               </div>
+              <span id="wishlist-count" class="ml-1 text-xs font-bold">0</span> <!-- Opzionale: contatore preferiti -->
             </button>
             <a href="/carrello.html"
               class="flex max-w-[480px] cursor-pointer items-center justify-center overflow-hidden rounded-lg h-10 bg-[#ededed] text-[#141414] gap-2 text-sm font-bold leading-normal tracking-[0.015em] min-w-0 px-2.5"
@@ -94,84 +97,105 @@
         </header>
         <div class="gap-1 px-6 flex flex-1 justify-center py-5">
           <div class="layout-content-container flex flex-col w-80">
-            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Filters</h2>
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Bag Type</h3>
+            <h2 class="text-[#141414] text-[22px] font-bold leading-tight tracking-[-0.015em] px-4 pb-3 pt-5">Filtri</h2>
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Tipo di Borsa</h3>
             <div class="px-4">
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="tipo" value="Shoulder"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Shoulder</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Spalla</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="tipo" value="Handbag"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Handbag</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">A Mano</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="tipo" value="Clutch"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Clutch</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Pochette</p>
+              </label>
+               <label class="flex gap-x-3 py-3 flex-row">
+                <input
+                  type="checkbox" data-filter-group="tipo" value="Zaino"
+                  class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
+                />
+                <p class="text-[#141414] text-base font-normal leading-normal">Zaino</p>
+              </label>
+              <label class="flex gap-x-3 py-3 flex-row">
+                <input
+                  type="checkbox" data-filter-group="tipo" value="Tracolla"
+                  class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
+                />
+                <p class="text-[#141414] text-base font-normal leading-normal">Tracolla</p>
               </label>
             </div>
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Material</h3>
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Materiale</h3>
             <div class="px-4">
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="materiale" value="Pelle"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Leather</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Pelle</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="materiale" value="Tessuto Tecnico"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Fabric</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Tessuto Tecnico</p>
+              </label>
+              <label class="flex gap-x-3 py-3 flex-row">
+                <input
+                  type="checkbox" data-filter-group="materiale" value="Seta"
+                  class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
+                />
+                <p class="text-[#141414] text-base font-normal leading-normal">Seta</p>
               </label>
             </div>
-            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Color</h3>
+            <h3 class="text-[#141414] text-lg font-bold leading-tight tracking-[-0.015em] px-4 pb-2 pt-4">Colore</h3>
             <div class="px-4">
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="colore" value="Nero"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Black</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Nero</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="colore" value="Marrone"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Brown</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Marrone</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="colore" value="Rosso"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Red</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Rosso</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="colore" value="Blu Navy"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Blue</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Blu Navy</p>
               </label>
               <label class="flex gap-x-3 py-3 flex-row">
                 <input
-                  type="checkbox"
+                  type="checkbox" data-filter-group="colore" value="Grigio"
                   class="h-5 w-5 rounded border-[#dbdbdb] border-2 bg-transparent text-[#141414] checked:bg-[#141414] checked:border-[#141414] checked:bg-[image:--checkbox-tick-svg] focus:ring-0 focus:ring-offset-0 focus:border-[#dbdbdb] focus:outline-none"
                 />
-                <p class="text-[#141414] text-base font-normal leading-normal">Green</p>
+                <p class="text-[#141414] text-base font-normal leading-normal">Grigio</p>
               </label>
             </div>
           </div>
